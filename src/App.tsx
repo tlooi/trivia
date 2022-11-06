@@ -1,10 +1,13 @@
+import GameProvider from './context/GameContext';
+
 import './App.css'
 
 function App() {
-  return (
-    <div>
-    </div>
-  )
+    
+    return (
+        <GameProvider>
+        </GameProvider>
+    )
 }
 
 export default App
