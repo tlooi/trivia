@@ -6,6 +6,7 @@ import GameProvider from './context/GameContext';
 
 import { Route, Routes } from 'react-router-dom';
 import Card from './components/Card';
+import GameCard from './components/GameCard';
 
 function App() {
     
@@ -25,7 +26,9 @@ function App() {
                     <Route 
                         path='/play' 
                         element={
-                            <Card><div></div></Card>
+                            <Card>
+                                <GameCard />
+                            </Card>
                         }
                     />
                 </Routes>
