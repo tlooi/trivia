@@ -1,6 +1,6 @@
 .card {
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 4rem;
+    padding: clamp(10px, 10%, 50px);
     border-radius: 10px;
     width: clamp(250px, 90vw, 1000px);
     height: clamp(250px, 90vh, 1000px);
@@ -9,4 +9,15 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+/* For chrome and edge */
+.card::-webkit-scrollbar,
+.card::-webkit-scrollbar-track,
+.card::-webkit-scrollbar-thumb,
+.card::-webkit-scrollbar-track-piece,
+.card::-webkit-scrollbar-button {
+    display: none;
 }

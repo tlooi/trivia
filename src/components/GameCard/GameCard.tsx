@@ -1,6 +1,6 @@
 import './GameCard.module.css';
 
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import useFetch from '../hooks/useFetch';
 
 const loadingVariant: Variants = {
@@ -39,6 +39,11 @@ export default function GameCard() {
         <motion.div variants={loadingVariant} initial="initial" animate="animate" exit="exit" transition={{ staggerChildren: 0.1 }}>
             <h1 dangerouslySetInnerHTML={{ __html: data.results[0].question }} />
             {data.results[0].type === 'boolean' ? <div>Boolean</div> : <div>MCQ</div>}
+            {data.results[0].incorrect_answers.map((val) => {
+                return (
+                    <h1>{val}</h1>
+                );
+            })}
             {/* Render Boolean Question */}
             {/* Render MCQ Question */}
             {/* Render number of questions */}

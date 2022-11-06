@@ -8,23 +8,24 @@ import { Route, Routes } from 'react-router-dom';
 import Card from './components/Card';
 import GameCard from './components/GameCard';
 
+
 function App() {
-    
+
     return (
         <>
             <EvolvingBackground />
             <GameProvider>
                 <Routes>
-                    <Route 
-                        index 
+                    <Route
+                        index
                         element={
                             <Card>
                                 <HomeCard />
                             </Card>
-                        } 
+                        }
                     />
-                    <Route 
-                        path='/play' 
+                    <Route
+                        path='/play'
                         element={
                             <Card>
                                 <GameCard />
