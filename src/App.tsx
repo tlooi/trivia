@@ -1,12 +1,18 @@
-import GameProvider from './context/GameContext';
+import './App.css';
 
-import './App.css'
+import EvolvingBackground from './components/EvolvingBackground';
+import GameCard from './components/GameCard';
+import GameProvider from './context/GameContext';
 
 function App() {
     
     return (
-        <GameProvider>
-        </GameProvider>
+        <>
+            <EvolvingBackground />
+            <GameProvider>
+                <GameCard />
+            </GameProvider>
+        </>
     )
 }
 
