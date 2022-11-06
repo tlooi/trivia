@@ -1,8 +1,11 @@
 import './App.css';
 
 import EvolvingBackground from './components/EvolvingBackground';
-import GameCard from './components/GameCard';
+import HomeCard from './components/HomeCard';
 import GameProvider from './context/GameContext';
+
+import { Route, Routes } from 'react-router-dom';
+import Card from './components/Card';
 
 function App() {
     
@@ -10,7 +13,22 @@ function App() {
         <>
             <EvolvingBackground />
             <GameProvider>
-                <GameCard />
+                <Routes>
+                    <Route 
+                        index 
+                        element={
+                            <Card>
+                                <HomeCard />
+                            </Card>
+                        } 
+                    />
+                    <Route 
+                        path='/play' 
+                        element={
+                            <Card><div></div></Card>
+                        }
+                    />
+                </Routes>
             </GameProvider>
         </>
     )

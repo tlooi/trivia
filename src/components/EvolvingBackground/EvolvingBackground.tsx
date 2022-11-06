@@ -10,7 +10,7 @@ export default function EvolvingBackground() {
         <motion.div
             id="background"
             animate={{
-                background: [`linear-gradient(${angle}deg, red, 75%, green)`, `linear-gradient(${angle + 360}deg, red, 25%, blue)`]
+                background: [`linear-gradient(${angle}deg, red, 75%, blue)`, `linear-gradient(${angle + 180}deg, red, 25%, blue)`, `linear-gradient(${angle + 360}deg, red, 75%, blue)`]
             }}
             transition={{
                 repeat: Infinity,
