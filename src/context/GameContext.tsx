@@ -1,10 +1,12 @@
 import { createContext, useState } from "react";
-import { GameContextType, GameProviderProps, IQuestion } from "../types/game";
+import { ChildrenProp } from "../types/component";
+import { QuestionData } from "../types/data";
+import { GameContextType } from "../types/game";
 
 export const GameContext = createContext<GameContextType | null>(null);
 
-export default function GameProvider({ children }: GameProviderProps) {
-    const [questions, setQuestions] = useState<IQuestion[]>([]);
+export default function GameProvider({ children }: ChildrenProp) {
+    const [questions, setQuestions] = useState<QuestionData[] | null>([]);
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
 
     return (

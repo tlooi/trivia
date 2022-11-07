@@ -1,19 +1,9 @@
 import React from "react"
-
-export interface IQuestion {
-    category: string,
-    question: string,
-    correctAnswer: string,
-    incorrectAnswers: string[]
-}
-
-export interface GameProviderProps {
-    children: React.ReactNode
-}
+import { QuestionData } from "./data"
 
 export type GameContextType = {
-    questions: IQuestion[],
+    questions: QuestionData[] | null,
     currentQuestion: number,
-    setQuestions: (questions: IQuestion[]) => void,
+    setQuestions: (questions: QuestionData[] | null) => void,
     setCurrentQuestion: (question: number) => void
 }
