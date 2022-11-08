@@ -6,7 +6,7 @@ import { GameContextType } from "../types/game";
 export const GameContext = createContext<GameContextType | null>(null);
 
 export default function GameProvider({ children }: ChildrenProp) {
-    const [questions, setQuestions] = useState<QuestionData[] | null>([]);
+    const [questions, setQuestions] = useState<QuestionData[]>([]);
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
 
     return (

@@ -2,8 +2,8 @@ import React from "react"
 import { QuestionData } from "./data"
 
 export type GameContextType = {
-    questions: QuestionData[] | null,
+    questions: QuestionData[],
     currentQuestion: number,
-    setQuestions: (questions: QuestionData[] | null) => void,
+    setQuestions: (questions: QuestionData[]) => void,
     setCurrentQuestion: (question: number) => void
 }

@@ -27,7 +27,7 @@ export default function GameCard() {
     const { setQuestions, setCurrentQuestion } = useContext(GameContext) as GameContextType;
     useEffect(() => {
         setCurrentQuestion(0);
-        setQuestions(data && data.results);
+        setQuestions(data?.results || []);
     }, [data]);
 
     if (loading || data == null) {
@@ -48,11 +48,7 @@ export default function GameCard() {
         <motion.div variants={loadingVariant} initial="initial" animate="animate" exit="exit" transition={{ staggerChildren: 0.1 }}>
             <h1 dangerouslySetInnerHTML={{ __html: data.results[0].question }} />
             {data.results[0].type === 'boolean' ? <div>Boolean</div> : <div>MCQ</div>}
-            {data.results[0].incorrect_answers.map((val) => {
-                return (
-                    <h1 key={val}>{val}</h1>
-                );
-            })}
+            {data.results[0].incorrect_answers.map((val) => <h1 key={val} dangerouslySetInnerHTML={{__html: val}}></h1>)}
             <Answers />
             {/* Render Boolean Question */}
             {/* Render MCQ Question */}
