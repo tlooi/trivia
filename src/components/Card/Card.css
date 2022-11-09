@@ -11,6 +11,7 @@
     align-items: center;
     overflow-y: scroll;
     scrollbar-width: none;
+    padding: 2rem;
 }
 
 /* For chrome and edge */
@@ -20,4 +21,9 @@
 .card::-webkit-scrollbar-track-piece,
 .card::-webkit-scrollbar-button {
     display: none;
+}
+@media screen and (max-width: 800px) {
+    .card {
+        padding: 1rem;
+    }
 }

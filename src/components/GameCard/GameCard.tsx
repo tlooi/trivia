@@ -1,11 +1,11 @@
 import './GameCard.module.css';
 
-import { motion, Variants } from 'framer-motion';
-import Answers from '../Answers';
-import useFetch from '../hooks/useFetch';
+import { motion, useMotionValue, Variants } from 'framer-motion';
 import { useContext, useEffect } from 'react';
 import { GameContext } from '../../context/GameContext';
 import { GameContextType } from '../../types/game';
+import Answers from '../Answers';
+import useFetch from '../hooks/useFetch';
 
 const loadingVariant: Variants = {
     initial: {
@@ -25,9 +25,12 @@ const loadingVariant: Variants = {
 export default function GameCard() {
     const { data, loading } = useFetch('https://opentdb.com/api.php?amount=10');
     const { setQuestions, setCurrentQuestion } = useContext(GameContext) as GameContextType;
+    
     useEffect(() => {
-        setCurrentQuestion(0);
-        setQuestions(data?.results || []);
+        if (data) {
+            setCurrentQuestion(0);
+            setQuestions(data.results);
+        }
     }, [data]);
 
     if (loading || data == null) {
@@ -43,12 +46,11 @@ export default function GameCard() {
             </motion.h1>
         );
     }
-    
+
     return (
-        <motion.div variants={loadingVariant} initial="initial" animate="animate" exit="exit" transition={{ staggerChildren: 0.1 }}>
+        <motion.div style={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}} variants={loadingVariant} initial="initial" animate="animate" exit="exit" transition={{ staggerChildren: 0.1 }}>
             <h1 dangerouslySetInnerHTML={{ __html: data.results[0].question }} />
-            {data.results[0].type === 'boolean' ? <div>Boolean</div> : <div>MCQ</div>}
-            {data.results[0].incorrect_answers.map((val) => <h1 key={val} dangerouslySetInnerHTML={{__html: val}}></h1>)}
+            <div>{data.results[0].type}</div>
             <Answers />
             {/* Render Boolean Question */}
             {/* Render MCQ Question */}
