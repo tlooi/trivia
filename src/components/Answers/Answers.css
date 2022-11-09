@@ -17,26 +17,27 @@
 .answer {
     border-image: linear-gradient(to right, hsl(42.17, 84.8%, 50.98%), hsl(331.06, 100%, 50%)) 1;
     background-color: white;
-    /* filter: brightness(0.4); */
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding: 2rem; */
+    padding: 2rem;
     border-radius: 10px;
     transition: all 400ms;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, .08);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
     font-size: 1.6rem;
+    border: 3px solid transparent;
 }
 
 .answer:hover {
-    background-color: hsl(42.17, 84.8%, 48%);
+    border: 3px solid hsl(42.17, 84.8%, 50.98%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
 }
 
-.selected {
+.selected, .selected:hover {
     background-color: hsl(42.17, 84.8%, 50.98%);
 }
 
@@ -47,6 +48,7 @@
         margin-top: 1rem;
     }
     .answer {
+        padding: 1rem;
         font-size: 1.1rem;
         padding: 1.4rem;
     }

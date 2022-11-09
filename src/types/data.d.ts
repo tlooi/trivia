@@ -3,10 +3,18 @@ export type QuestionData = {
     type: 'multiple' | 'boolean',
     question: string,
     correct_answer: string,
-    incorrect_answers: string[]
+    answers: string[]
 }
 
 export interface IAPIData {
     responseCode: any,
-    results: QuestionData[]
+    results: APIRawQuestionData[]
+}
+
+export type APIRawQuestionData = {
+    category: string,
+    type: 'multiple' | 'boolean',
+    question: string,
+    correct_answer: string,
+    incorrect_answers: string[]
 }

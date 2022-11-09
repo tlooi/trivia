@@ -4,20 +4,24 @@ import { GameContextType } from '../../types/game';
 import './Answers.css';
 
 export default function Answers() {
-    const { questions, currentQuestion } = useContext(GameContext) as GameContextType;
-    
+    const { questions, currentQuestion, selectedAnswers, setSelectedAnswers } = useContext(GameContext) as GameContextType;
+
     let possibleAnswers: string[] = [];
     if (questions.length) {
-        possibleAnswers = 
-            [questions[currentQuestion].correct_answer, ...questions[currentQuestion].incorrect_answers]
-                .sort(() => Math.random() > 0.5 ? 1 : -1);
+        possibleAnswers = questions[currentQuestion].answers;
+    }
+
+    function selectAnswer(index: number) {
+        selectedAnswers[currentQuestion] = index;
+        setSelectedAnswers([...selectedAnswers]);
+        console.log(selectedAnswers[currentQuestion]);
     }
     
     return (
         <div className="answers-wrapper">
-            {possibleAnswers.map((val) => {
+            {possibleAnswers.map((val, index) => {
                 return (
-                    <div className='answer' key={val} dangerouslySetInnerHTML={{__html: val}} />
+                    <div className={index == selectedAnswers[currentQuestion] ? 'selected answer' : 'answer'} onClick={() => {selectAnswer(index)}} key={val} dangerouslySetInnerHTML={{ __html: val }} />
                 );
             })}
         </div>
