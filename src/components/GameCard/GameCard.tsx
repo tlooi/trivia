@@ -1,4 +1,4 @@
-import './GameCard.module.css';
+import './GameCard.css';
 
 import { motion, Variants } from 'framer-motion';
 import { useContext, useEffect } from 'react';
@@ -25,7 +25,7 @@ const loadingVariant: Variants = {
 
 export default function GameCard() {
     const { data, loading } = useFetch('https://opentdb.com/api.php?amount=10');
-    const { setQuestions, setCurrentQuestion } = useContext(GameContext) as GameContextType;
+    const { currentQuestion, setQuestions, setCurrentQuestion } = useContext(GameContext) as GameContextType;
 
     useEffect(() => {
         if (data) {
@@ -61,12 +61,22 @@ export default function GameCard() {
 
     return (
         <motion.div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }} variants={loadingVariant} initial="initial" animate="animate" exit="exit" transition={{ staggerChildren: 0.1 }}>
-            <h1 dangerouslySetInnerHTML={{ __html: data.results[0].question }} />
-            <div>{data.results[0].type}</div>
+            <h1 dangerouslySetInnerHTML={{ __html: data.results[currentQuestion].question }} />
+            {/* <div>{data.results[currentQuestion].type}</div> */}
             <Answers />
             {/* Render Boolean Question */}
             {/* Render MCQ Question */}
             {/* Render number of questions */}
+
+            <div className="traversal-wrapper">
+                <div onClick={() => {currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1)}}>←</div>
+                <div>Home</div>
+                <div onClick={() => {currentQuestion < data.results.length - 1 && setCurrentQuestion(currentQuestion + 1)}}>→</div>
+            </div>
+            {/* <div style={{display: "flex", justifyContent: "space-around"}}>
+                <span onClick={() => {currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1)}}>Previous</span>
+                <span onClick={() => {currentQuestion < data.results.length - 1 && setCurrentQuestion(currentQuestion + 1)}}>Next</span>
+            </div> */}
         </motion.div>
     );
 }

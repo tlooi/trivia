@@ -1,0 +1,46 @@
+.traversal-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.traversal-wrapper > div {
+    border: 3px solid hsl(331.06, 100%, 50%);
+    padding: 0.65rem 1.5rem;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 200ms;
+    display: flex;
+    align-items: center;
+}
+
+.traversal-wrapper > div:nth-of-type(2n + 1) {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.traversal-wrapper > div:hover {
+    background-color: hsl(331.06, 100%, 48%);
+    padding: 0.65rem 1.5rem;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .traversal-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 1rem;
+    }
+    
+    .traversal-wrapper > div {
+        border: 3px solid hsl(331.06, 100%, 50%);
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        color: black;
+    }
+}

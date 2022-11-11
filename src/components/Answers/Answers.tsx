@@ -21,7 +21,7 @@ export default function Answers() {
         <div className="answers-wrapper">
             {possibleAnswers.map((val, index) => {
                 return (
-                    <div className={index == selectedAnswers[currentQuestion] ? 'selected answer' : 'answer'} onClick={() => {selectAnswer(index)}} key={val} dangerouslySetInnerHTML={{ __html: val }} />
+                    <div className={index == selectedAnswers[currentQuestion] ? 'selected answer' : 'answer'} onClick={() => {selectAnswer(index);}} key={val} dangerouslySetInnerHTML={{ __html: val }} />
                 );
             })}
         </div>
