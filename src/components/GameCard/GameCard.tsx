@@ -4,9 +4,9 @@ import { motion, Variants } from 'framer-motion';
 import { useContext, useEffect } from 'react';
 import { GameContext } from '../../context/GameContext';
 import { GameContextType } from '../../types/game';
+import parseHTML from '../../utils/parseHTML';
 import Answers from '../Answers';
 import useFetch from '../hooks/useFetch';
-import { QuestionData } from '../../types/data';
 
 const loadingVariant: Variants = {
     initial: {
@@ -61,7 +61,9 @@ export default function GameCard() {
 
     return (
         <motion.div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }} variants={loadingVariant} initial="initial" animate="animate" exit="exit" transition={{ staggerChildren: 0.1 }}>
-            <h1 dangerouslySetInnerHTML={{ __html: data.results[currentQuestion].question }} />
+            <h1>
+                {parseHTML(data.results[currentQuestion].question)}
+            </h1>
             {/* <div>{data.results[currentQuestion].type}</div> */}
             <Answers />
             {/* Render Boolean Question */}
@@ -69,9 +71,9 @@ export default function GameCard() {
             {/* Render number of questions */}
 
             <div className="traversal-wrapper">
-                <div onClick={() => {currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1)}}>←</div>
+                <div onClick={() => { currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1) }}>←</div>
                 <div>Home</div>
-                <div onClick={() => {currentQuestion < data.results.length - 1 && setCurrentQuestion(currentQuestion + 1)}}>→</div>
+                <div onClick={() => { currentQuestion < data.results.length - 1 && setCurrentQuestion(currentQuestion + 1) }}>→</div>
             </div>
             {/* <div style={{display: "flex", justifyContent: "space-around"}}>
                 <span onClick={() => {currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1)}}>Previous</span>

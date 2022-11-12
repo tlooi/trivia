@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { GameContext } from '../../context/GameContext';
 import { GameContextType } from '../../types/game';
+import parseHTML from '../../utils/parseHTML';
 import './Answers.css';
 
 export default function Answers() {
@@ -16,12 +17,15 @@ export default function Answers() {
         setSelectedAnswers([...selectedAnswers]);
         console.log(selectedAnswers[currentQuestion]);
     }
-    
+
     return (
         <div className="answers-wrapper">
             {possibleAnswers.map((val, index) => {
+                console.log(val, parseHTML(val));
                 return (
-                    <div className={index == selectedAnswers[currentQuestion] ? 'selected answer' : 'answer'} onClick={() => {selectAnswer(index);}} key={val} dangerouslySetInnerHTML={{ __html: val }} />
+                    <div className={index == selectedAnswers[currentQuestion] ? 'selected answer' : 'answer'} onClick={() => { selectAnswer(index); }} key={val}>
+                        {parseHTML(val)}
+                    </div>
                 );
             })}
         </div>
